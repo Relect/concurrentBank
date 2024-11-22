@@ -2,9 +2,10 @@ package org.bank;
 
 public class BankAccount {
     private volatile int balance;
-
-    public BankAccount(int balance) {
+    private final int numAccount;
+    public BankAccount(int balance, int numAccount) {
         this.balance = balance;
+        this.numAccount = numAccount;
     }
 
     public synchronized void deposit(int summ) {
@@ -17,5 +18,9 @@ public class BankAccount {
 
     public int getBalance() {
         return balance;
+    }
+
+    public int getNumAccount() {
+        return numAccount;
     }
 }
