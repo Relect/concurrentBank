@@ -8,11 +8,11 @@ public class BankAccount {
         this.numAccount = numAccount;
     }
 
-    public synchronized void deposit(int summ) {
+    public void deposit(int summ) {
         balance += summ;
     }
 
-    public synchronized void withdraw(int summ) {
+    public void withdraw(int summ) {
         balance -= summ;
     }
 

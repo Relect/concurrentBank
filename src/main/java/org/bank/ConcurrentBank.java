@@ -16,15 +16,15 @@ public class ConcurrentBank {
         return account;
     }
     public void transfer(BankAccount from, BankAccount to, int summ) {
-        if (from.getNumAccount() < to.getNumAccount()) {
-            from.withdraw(summ);
-            to.deposit(summ);
-        } else  {
-            to.deposit(summ);
-            from.withdraw(summ);
+        BankAccount first = from.getNumAccount() > to.getNumAccount() ? from : to;
+        BankAccount second = from.getNumAccount() > to.getNumAccount() ? to : from;
+
+        synchronized (first) {
+            synchronized (second) {
+                from.withdraw(summ);
+                to.deposit(summ);
+            }
         }
-
-
     }
     public int getTotalBalance() {
         int result = 0;
